@@ -66,12 +66,6 @@ var Login = {
 
         });
 
-
-
-        // let result = db.query(sql, callback)
-        // console.log('result ==>>', result)
-        // return result;
-
     },
 };
 module.exports = Login;

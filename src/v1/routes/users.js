@@ -51,6 +51,7 @@ router.post('/', function (req, res, next) {
     });
 });
 
+
 router.patch('/', function (req, res, next) {
     try {
         User.activateUser(req.body, function (err, count) {
