@@ -1,77 +1,21 @@
 var express = require('express');
 var router = express.Router();
 import Sites from '../models/sites'
-
-// router.get('/:id?', function (req, res, next) {
-
-//     if (req.params.id) {
-
-//         Sites.getSitesById(req.params.id, function (err, rows) {
-
-//             if (err) {
-//                 res.json(err);
-//             }
-//             else {
-//                 res.json(rows);
-//             }
-//         });
-//     }
-//     else {
-
-//         Sites.getAllSites(function (err, rows) {
-
-//             if (err) {
-//                 res.json(err);
-//             }
-//             else {
-//                 res.json(rows);
-//             }
-
-//         });
-//     }
-// });
-
-
-
-
-// router.get('/users/:id?', function (req, res, next) {
-
-//     if (req.params.id) {
-
-//         Sites.getSitesByUserId(req.params.id, function (err, rows) {
-
-//             if (err) {
-//                 res.json(err);
-//             }
-//             else {
-//                 res.json(rows);
-//             }
-//         });
-//     }
-//     else {
-
-//         Sites.getAllUserSites(function (err, rows) {
-
-//             if (err) {
-//                 res.json(err);
-//             }
-//             else {
-//                 res.json(rows);
-//             }
-
-//         });
-//     }
-// });
+import responseFormat from '../../lib/responseFormat'
 
 router.get('/users/:id?', async function (req, res, next) {
-    if (req.params.id) {
-        let result = await Sites.getSitesByUserId(req.params.id)
-        console.log("result ==>>)", result)
-        res.json(result);
-    } else {
-        let result = await Sites.getAllUserSites(req.body)
-        console.log("result ==>>)", result)
-        res.json(result);
+    try {
+        if (req.params.id) {
+            let result = await Sites.getSitesByUserId(req.params.id, res)
+            console.log("result ==>>)", result)
+            res.status(responseFormat.statusCode["SUCCESS"]).send(responseFormat.getResponseObject("success", responseFormat.statusCode["SUCCESS"], "", result));
+        } else {
+            let result = await Sites.getAllUserSites(req.body, res)
+            console.log("result ==>>)", result)
+            res.status(responseFormat.statusCode["SUCCESS"]).send(responseFormat.getResponseObject("success", responseFormat.statusCode["SUCCESS"], "", result));
+        }
+    } catch (err) {
+        res.status(responseFormat.statusCode["INTERNAL_SERVER_ERROR"]).send(responseFormat.getResponseObject("error", responseFormat.statusCode["INTERNAL_SERVER_ERROR"], err, null));
     }
 
 });

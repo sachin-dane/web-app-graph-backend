@@ -1,5 +1,6 @@
 
 import db from '../../db/db'
+import responseFormat from '../../lib/responseFormat'
 
 var Sites = {
 
@@ -26,12 +27,15 @@ var Sites = {
                         response.message = 'Response return successfully'
                         response.data = rows
                         resolve(response)
+                    } else if (err) {
+                        reject(err)
                     } else {
                         response.message = 'No records found'
                         resolve(response)
                     }
                 })
             } catch (err) {
+                console.log('EEEEEEE==>>', err)
                 reject(err);
             }
         });
