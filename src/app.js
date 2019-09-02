@@ -10,6 +10,7 @@ import path from "path";
 import mysql from 'mysql';
 import users from './v1/routes/users';
 import login from './v1/routes/login'
+import sites from './v1/routes/sites'
 
 nconf.argv()
     .env()
@@ -61,6 +62,7 @@ app.get('/ping', (req, res) => {
 // app.use('/api/v1/', routes);
 app.use('/api/v1/users', users);
 app.use('/api/v1/login', login);
+app.use('/api/v1/sites', sites);
 
 // app.listen(nconf.get("PORT") || "3001", () => {
 //     console.log('listening on port 3001');
