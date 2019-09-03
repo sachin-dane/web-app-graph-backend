@@ -16,7 +16,7 @@ var User = {
     addUser: function (user, callback) {
         console.log("inside service");
 
-        let sql = ` INSERT INTO user (firstname, lastname, email, password, phone_no, address, company_name, city, state, zip_code) VALUES ('${user.firstname}','${user.lastname}','${user.email}','${user.password}','${user.phone_no}','${user.address}','${user.company_name}','${user.city}','${user.state}','${user.zip_code}');`;
+        let sql = ` INSERT INTO user (firstname, lastname, email, password, phone_no, address, company_name, city, state, zip_code, status) VALUES ('${user.firstname}','${user.lastname}','${user.email}','${user.password}','${user.phone_no}','${user.address}','${user.company_name}','${user.city}','${user.state}','${user.zip_code}', ${user.status});`;
 
 
         return db.query(sql, callback);
