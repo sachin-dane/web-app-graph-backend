@@ -70,7 +70,7 @@ var User = {
                 if (checkUser.data && checkUser.data.length > 0) {
                     console.log('User already exist')
                     response.message = 'User already exist, Please use another account.'
-                    resolve(response)
+                    reject(response)
                 } else {
                     let sql = ` INSERT INTO user (firstname, lastname, email, password, phone_no, address, company_name, city, state, zip_code, status) VALUES ('${user.firstname}','${user.lastname}','${user.email}','${user.password}','${user.phone_no}','${user.address}','${user.company_name}','${user.city}','${user.state}','${user.zip_code}', ${user.status});`;
                     db.query(sql, function (err, rows, fields) {

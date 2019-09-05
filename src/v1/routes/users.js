@@ -60,6 +60,7 @@ router.post('/', async function (req, res, next) {
         res.status(responseFormat.statusCode["SUCCESS"]).send(responseFormat.getResponseObject("success", responseFormat.statusCode["SUCCESS"], "", result));
 
     } catch (err) {
+        console.log('errr==>>', err)
         res.status(responseFormat.statusCode["INTERNAL_SERVER_ERROR"]).send(responseFormat.getResponseObject("error", responseFormat.statusCode["INTERNAL_SERVER_ERROR"], err, null));
     }
 
