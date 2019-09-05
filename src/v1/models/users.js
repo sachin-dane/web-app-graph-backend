@@ -1,6 +1,35 @@
 
 import db from '../../db/db'
 
+const checkUserExist = (email) => {
+    return new Promise(async (resolve, reject) => {
+        let response = {
+            message: '',
+            data: []
+        }
+        try {
+            let sql = `select * from user where email='${email}'`
+
+            db.query(sql, function (err, rows, fields) {
+                console.log(' rows.length==>>', rows, err)
+                if (!err && rows.length > 0) {
+                    response.message = 'Response return successfully'
+                    response.data = rows
+                    resolve(response)
+                } else if (err) {
+                    resolve(response)
+                } else {
+                    response.message = 'No records found'
+                    resolve(response)
+                }
+            })
+        } catch (err) {
+            console.log('EEEEEEE==>>', err)
+            reject(err);
+        }
+    });
+}
+
 var User = {
 
     getAllUsers: function (callback) {
@@ -13,15 +42,55 @@ var User = {
         return db.query("select * from user where id=?", [id], callback);
     },
 
-    addUser: function (user, callback) {
-        console.log("inside service");
+    // addUser: async function (user, callback) {
+    //     console.log("inside service");
 
-        let sql = ` INSERT INTO user (firstname, lastname, email, password, phone_no, address, company_name, city, state, zip_code, status) VALUES ('${user.firstname}','${user.lastname}','${user.email}','${user.password}','${user.phone_no}','${user.address}','${user.company_name}','${user.city}','${user.state}','${user.zip_code}', ${user.status});`;
+    //     let checkUser = await checkUserExist(user.email)
+    //     console.log('checkUser ==>>', checkUser.data.length)
+    //     if (checkUser.data && checkUser.data.length > 0) {
+
+    //     } else {
+    //         let sql = ` INSERT INTO user (firstname, lastname, email, password, phone_no, address, company_name, city, state, zip_code, status) VALUES ('${user.firstname}','${user.lastname}','${user.email}','${user.password}','${user.phone_no}','${user.address}','${user.company_name}','${user.city}','${user.state}','${user.zip_code}', ${user.status});`;
+
+    //     }
+    //     return db.query(sql, callback);
+    //     //return db.query("insert into task(Id,Title,Status) values(?,?,?)",[Task1.Id,Task1.Title,Task1.Status],callback);
+    // },
 
 
-        return db.query(sql, callback);
-        //return db.query("insert into task(Id,Title,Status) values(?,?,?)",[Task1.Id,Task1.Title,Task1.Status],callback);
+    addUser: async function (user) {
+        return new Promise(async (resolve, reject) => {
+            let response = {
+                message: '',
+                data: []
+            }
+            try {
+                let checkUser = await checkUserExist(user.email)
+                console.log('User already exist', checkUser)
+                if (checkUser.data && checkUser.data.length > 0) {
+                    console.log('User already exist')
+                    response.message = 'User already exist, Please use another account.'
+                    resolve(response)
+                } else {
+                    let sql = ` INSERT INTO user (firstname, lastname, email, password, phone_no, address, company_name, city, state, zip_code, status) VALUES ('${user.firstname}','${user.lastname}','${user.email}','${user.password}','${user.phone_no}','${user.address}','${user.company_name}','${user.city}','${user.state}','${user.zip_code}', ${user.status});`;
+                    db.query(sql, function (err, rows, fields) {
+                        console.log('ad rows==>>>', rows)
+                        if (!err) {
+                            response.message = 'User added successfully'
+                            response.data = rows
+                            resolve(response)
+                        } else if (err) {
+                            reject(err)
+                        }
+                    })
+                }
+            } catch (err) {
+                console.log('EEEEEEE==>>', err)
+                reject(err);
+            }
+        });
     },
+
 
     deleteUser: function (id, callback) {
         return db.query("delete from user where id=?", [id], callback);
@@ -43,6 +112,9 @@ var User = {
 
         return db.query(sql, callback);
     },
+
+
+
 
 
     // deleteAll: function (item, callback) {

@@ -40,5 +40,39 @@ var Sites = {
             }
         });
     },
+
+    getSitesById: function (id) {
+        console.log('data==>>', id)
+        return new Promise(async (resolve, reject) => {
+            let response = {
+                message: '',
+                data: []
+            }
+            try {
+
+                console.log('data try==>>', id)
+                let sql = `SELECT * FROM sites as s INNER JOIN site_details as sd on s.id = sd.site_id where s.id = ${id};`
+
+                db.query(sql, function (err, rows, fields) {
+                    console.log(' rows.length==>>', rows.length, err)
+                    if (!err && rows.length > 0) {
+                        response.message = 'Response return successfully'
+                        response.data = rows
+                        resolve(response)
+                    } else if (err) {
+                        response.message = 'Something Went wrong'
+                        reject(response)
+                    } else {
+                        response.message = 'No records found'
+                        resolve(response)
+                    }
+                })
+            } catch (err) {
+                console.log('EEEEEEE==>>', err)
+                reject(err);
+            }
+        });
+    },
+
 };
 module.exports = Sites;

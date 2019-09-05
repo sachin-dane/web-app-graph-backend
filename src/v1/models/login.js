@@ -4,7 +4,6 @@ import db from '../../db/db'
 
 var Login = {
 
-
     userLogin: function (data) {
         console.log('data==>>', data)
         return new Promise(async (resolve, reject) => {
@@ -18,12 +17,13 @@ var Login = {
                 let sql = `select * from user where email='${data.email}' and password='${data.password}' and status=1`
                 db.query(sql, function (err, rows, fields) {
                     console.log(' rows.length==>>', rows.length, err)
+
                     if (!err && rows.length > 0) {
                         response.message = 'Successfull Login'
                         response.data = rows
                         resolve(response)
                     } else {
-                        response.message = 'Incorrect Username and password or Admin not yet activated your account'
+                        response.message = 'Incorrect Username and password or Admin has not yet activated your account'
                         resolve(response)
                     }
                 })
