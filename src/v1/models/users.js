@@ -33,29 +33,13 @@ const checkUserExist = (email) => {
 var User = {
 
     getAllUsers: function (callback) {
-
-        return db.query("Select * from user", callback);
-
+        let sql = `SELECT  u.id, u.firstname, u.lastname, u.email, u.phone_no, u.address, u.company_name, u.city, u.state, u.zip_code, ut.role, u.status  FROM ces_web_app.user as u inner join ces_web_app.userType as ut on ut.id = u.user_role;`
+        return db.query(sql, callback);
     },
     getUserById: function (id, callback) {
 
         return db.query("select * from user where id=?", [id], callback);
     },
-
-    // addUser: async function (user, callback) {
-    //     console.log("inside service");
-
-    //     let checkUser = await checkUserExist(user.email)
-    //     console.log('checkUser ==>>', checkUser.data.length)
-    //     if (checkUser.data && checkUser.data.length > 0) {
-
-    //     } else {
-    //         let sql = ` INSERT INTO user (firstname, lastname, email, password, phone_no, address, company_name, city, state, zip_code, status) VALUES ('${user.firstname}','${user.lastname}','${user.email}','${user.password}','${user.phone_no}','${user.address}','${user.company_name}','${user.city}','${user.state}','${user.zip_code}', ${user.status});`;
-
-    //     }
-    //     return db.query(sql, callback);
-    //     //return db.query("insert into task(Id,Title,Status) values(?,?,?)",[Task1.Id,Task1.Title,Task1.Status],callback);
-    // },
 
 
     addUser: async function (user) {
@@ -72,7 +56,7 @@ var User = {
                     response.message = 'User already exist, Please use another account.'
                     reject(response)
                 } else {
-                    let sql = ` INSERT INTO user (firstname, lastname, email, password, phone_no, address, company_name, city, state, zip_code, status) VALUES ('${user.firstname}','${user.lastname}','${user.email}','${user.password}','${user.phone_no}','${user.address}','${user.company_name}','${user.city}','${user.state}','${user.zip_code}', ${user.status});`;
+                    let sql = ` INSERT INTO user (firstname, lastname, email, password, phone_no, address, company_name, city, state, zip_code, status, user_role) VALUES ('${user.firstname}','${user.lastname}','${user.email}','${user.password}','${user.phone_no}','${user.address}','${user.company_name}','${user.city}','${user.state}','${user.zip_code}', ${user.status}, ${user.user_role});`;
                     db.query(sql, function (err, rows, fields) {
                         console.log('ad rows==>>>', rows)
                         if (!err) {
@@ -84,6 +68,69 @@ var User = {
                         }
                     })
                 }
+            } catch (err) {
+                console.log('EEEEEEE==>>', err)
+                reject(err);
+            }
+        });
+    },
+
+    checkUser: function (data) {
+        return new Promise(async (resolve, reject) => {
+            let response = {
+                message: '',
+                data: []
+            }
+            console.log(' rows.length==>>', data)
+            try {
+                let sql = `select firstname, lastname, email from user where email='${data.email}' and phone_no='${data.phone_no}';`
+                console.log('sql ==>>', sql)
+                db.query(sql, function (err, rows, fields) {
+                    console.log(' rows.length==>>', rows.length, fields)
+                    if (!err && rows.length > 0) {
+                        response.message = 'Response return successfully'
+                        response.data = rows
+                        resolve(response)
+                    } else if (err) {
+                        response.message = 'Something Went wrong'
+                        reject(response)
+                    } else {
+                        response.message = 'User does not exist, Please check your email and phone no'
+                        resolve(response)
+                    }
+                })
+            } catch (err) {
+                console.log('EEEEEEE==>>', err)
+                reject(err);
+            }
+        });
+    },
+
+    updatePassword: function (data) {
+        return new Promise(async (resolve, reject) => {
+            let response = {
+                message: '',
+                data: []
+            }
+            console.log(' rows.length==>>', data)
+            try {
+                let sql = `UPDATE user SET password='${data.password}' WHERE email='${data.email}'; `;
+
+                console.log('sql ==>>', sql)
+                db.query(sql, function (err, results, fields) {
+                    console.log(' rows.length==>>', results.affectedRows, fields)
+                    if (!err && results.affectedRows > 0) {
+                        response.message = 'Password Updated Successfuly'
+                        response.data = results
+                        resolve(response)
+                    } else if (err) {
+                        response.message = 'Something Went wrong'
+                        reject(response)
+                    } else {
+                        response.message = 'SOmething Went Wrong'
+                        resolve(response)
+                    }
+                })
             } catch (err) {
                 console.log('EEEEEEE==>>', err)
                 reject(err);
@@ -113,18 +160,5 @@ var User = {
         return db.query(sql, callback);
     },
 
-
-
-
-
-    // deleteAll: function (item, callback) {
-
-    //     var delarr = [];
-    //     for (i = 0; i < item.length; i++) {
-
-    //         delarr[i] = item[i].Id;
-    //     }
-    //     return db.query("delete from task where Id in (?)", [delarr], callback);
-    // }
 };
 module.exports = User;

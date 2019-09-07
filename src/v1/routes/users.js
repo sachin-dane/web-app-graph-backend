@@ -67,6 +67,35 @@ router.post('/', async function (req, res, next) {
 });
 
 
+router.post('/check', async function (req, res, next) {
+    try {
+
+        let result = await User.checkUser(req.body, res)
+        console.log("result ==>>)", result)
+        res.status(responseFormat.statusCode["SUCCESS"]).send(responseFormat.getResponseObject("success", responseFormat.statusCode["SUCCESS"], "", result));
+
+    } catch (err) {
+        console.log('errr==>>', err)
+        res.status(responseFormat.statusCode["INTERNAL_SERVER_ERROR"]).send(responseFormat.getResponseObject("error", responseFormat.statusCode["INTERNAL_SERVER_ERROR"], err, null));
+    }
+
+});
+
+router.put('/password/update', async function (req, res, next) {
+    try {
+
+        let result = await User.updatePassword(req.body, res)
+        console.log("result ==>>)", result)
+        res.status(responseFormat.statusCode["SUCCESS"]).send(responseFormat.getResponseObject("success", responseFormat.statusCode["SUCCESS"], "", result));
+
+    } catch (err) {
+        console.log('errr==>>', err)
+        res.status(responseFormat.statusCode["INTERNAL_SERVER_ERROR"]).send(responseFormat.getResponseObject("error", responseFormat.statusCode["INTERNAL_SERVER_ERROR"], err, null));
+    }
+
+});
+
+
 router.put('/', function (req, res, next) {
     try {
         User.activateUser(req.body, function (err, count) {
