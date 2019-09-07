@@ -6,7 +6,6 @@ import responseFormat from '../../lib/responseFormat'
 router.post('/', async function (req, res, next) {
     try {
         let result = await Login.userLogin(req.body)
-        console.log("result ==>>", result.data.length)
         if (result.data.length > 0) {
             res.status(responseFormat.statusCode["SUCCESS"]).send(responseFormat.getResponseObject("success", responseFormat.statusCode["SUCCESS"], "", result));
         } else {

@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sachind-cuelogic/demo-nodejs.git"
+    "url": "git+https://github.com/sachin-dane/web-app-graph-backend.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sachind-cuelogic/demo-nodejs/issues"
+    "url": "https://github.com/sachin-dane/web-app-graph-backend.git"
   },
-  "homepage": "https://github.com/sachind-cuelogic/demo-nodejs#readme",
+  "homepage": "https://github.com/sachin-dane/web-app-graph-backend.git#readme",
   "dependencies": {
     "async": "^2.6.1",
     "bluebird": "^3.5.1",

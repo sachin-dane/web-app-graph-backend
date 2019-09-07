@@ -1,8 +1,5 @@
 
 import "dotenv/config";
-import http from "http";
-import app from "../app";
-// import logger from "../lib/logger";
 import nconf from "nconf";
 import path from "path";
 import mysql from 'mysql'
@@ -38,5 +35,4 @@ mySqlConnection.connect((err) => {
         //  process.exit();
     }
 });
-// console.log("mySqlConnection==>>", mySqlConnection)
 export default mySqlConnection;

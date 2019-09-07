@@ -36,46 +36,23 @@ router.get('/:id?', function (req, res, next) {
     }
 });
 
-// router.post('/', function (req, res, next) {
-
-//     User.addUser(req.body, function (err, count) {
-//         let message = ''
-//         //console.log(req.body);
-//         if (err) {
-//             res.status(responseFormat.statusCode["BAD_REQUEST"]).send(responseFormat.getResponseObject("error", responseFormat.statusCode["BAD_REQUEST"], err.message, null));
-//         }
-//         else {
-//             message = 'User added successfully'
-//             res.status(responseFormat.statusCode["SUCCESS"]).send(responseFormat.getResponseObject("success", responseFormat.statusCode["SUCCESS"], message, null));
-//         }
-//     });
-// });
-
-
 router.post('/', async function (req, res, next) {
     try {
-
         let result = await User.addUser(req.body, res)
-        console.log("result ==>>)", result)
         res.status(responseFormat.statusCode["SUCCESS"]).send(responseFormat.getResponseObject("success", responseFormat.statusCode["SUCCESS"], "", result));
 
     } catch (err) {
-        console.log('errr==>>', err)
         res.status(responseFormat.statusCode["INTERNAL_SERVER_ERROR"]).send(responseFormat.getResponseObject("error", responseFormat.statusCode["INTERNAL_SERVER_ERROR"], err, null));
     }
-
 });
 
 
 router.post('/check', async function (req, res, next) {
     try {
-
         let result = await User.checkUser(req.body, res)
-        console.log("result ==>>)", result)
         res.status(responseFormat.statusCode["SUCCESS"]).send(responseFormat.getResponseObject("success", responseFormat.statusCode["SUCCESS"], "", result));
 
     } catch (err) {
-        console.log('errr==>>', err)
         res.status(responseFormat.statusCode["INTERNAL_SERVER_ERROR"]).send(responseFormat.getResponseObject("error", responseFormat.statusCode["INTERNAL_SERVER_ERROR"], err, null));
     }
 
@@ -85,11 +62,9 @@ router.put('/password/update', async function (req, res, next) {
     try {
 
         let result = await User.updatePassword(req.body, res)
-        console.log("result ==>>)", result)
         res.status(responseFormat.statusCode["SUCCESS"]).send(responseFormat.getResponseObject("success", responseFormat.statusCode["SUCCESS"], "", result));
 
     } catch (err) {
-        console.log('errr==>>', err)
         res.status(responseFormat.statusCode["INTERNAL_SERVER_ERROR"]).send(responseFormat.getResponseObject("error", responseFormat.statusCode["INTERNAL_SERVER_ERROR"], err, null));
     }
 
@@ -135,8 +110,6 @@ router.delete('/:id', function (req, res, next) {
 
 router.put('/:id', function (req, res, next) {
     try {
-        console.log('req==>>', req)
-
         User.updateUser(req.params.id, req.body, function (err, rows) {
             let message = ''
             if (err) {
