@@ -31,7 +31,7 @@ const checkUserExist = (email) => {
 var User = {
 
     getAllUsers: function (callback) {
-        let sql = `SELECT  u.id, u.firstname, u.lastname, u.email, u.phone_no, u.address, u.company_name, u.city, u.state, u.zip_code, ut.role, u.status  FROM ces_web_app.user as u inner join ces_web_app.userType as ut on ut.id = u.user_role;`
+        let sql = `SELECT  u.id, u.firstname, u.lastname, u.email, u.phone_no, u.address, u.company_name, u.city, u.state, u.zip_code, ut.role, u.status  FROM user as u inner join userType as ut on ut.id = u.user_role where u.user_role != 1;`
         return db.query(sql, callback);
     },
 
