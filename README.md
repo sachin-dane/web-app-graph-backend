@@ -1,33 +1,32 @@
 # CES : Web App
 
-**CES Web APp Backend application built in NodeJS**
+**CES Web App Backend application built in NodeJS**
 
 ## Prerequisites:
 - GIT
 - Node.js  (latest version e.g. v8.10.0)
 - NPM (latest version e.g. v6.1.0)
-- MySQL Server 
+- MySQL Server (You need to dump MySQL schema in your mysql database then you can easily use app)
 
 ## Getting started
 
 To get the Backend running locally:
 - Go to respective clone directory
-- `npm install` to install all req'd dependencies
+- Fist you need to check mysql server is running, then create database, db name ces_web_app, then you need to import  the schema in your database. I have added schema dump in git repo at root folder.
+    - reference (https://stackoverflow.com/questions/15884693/how-can-i-import-data-into-mysql-database-via-mysql-workbench)
+- Once you connected with database then you need to add mysql configuration in /src/config/config.json like database name, password, port
+    - reference ![alt text](https://github.com/sachin-dane/web-app-graph-backend/blob/master/screenshot/sql_config.png)
+- `npm install` to install all req'd dependencies (from root directory where your package.json file located)
 - `npm start` to start the local server
 - Once you start nodejs server, then you need to add API end point in front end i.e. web-app-graph-frontend/.env fle
-  ![alt text](https://github.com/sachin-dane/web-app-graph-frontend/blob/development/screenshot/env_variable.png)
-- You can acces application on 'http://0.0.0.0:8080/' or 'http://localhost:8080/'
+  ![alt text](https://github.com/sachin-dane/web-app-graph-backend/blob/master/screenshot/env_variable.png)
+- You API can access API on 'http://0.0.0.0:3001/' or 'http://localhost:3001/' 
+- If you want to check API is running or not, go to browser and hit this url 'http://localhost:3001/ping' it will show the API is running or not it's response is '{ "status": "OK", "status_code": 200 }' 
+- Also I have added postman collection of rest API's
+- You can acces frontend application on 'http://0.0.0.0:8080/' or 'http://localhost:8080/'
 
-## Component architecture
-  ### Components will be of the following types
-  - Container - Stateful component with lifecycle and access to the state tree
-  - Steteless/Functional - Simple function that renders an output with little to no logic
-  - HOC - A component wrapper. Will enrich a component passed to it
-  - `View.js` - The root container where the layout is set
-  - The `pages` folder will contain folders each representing a `route` defined in the `View.js` container.
-  - All the common/reusable components will be stored in the `ui` folder.
 
-## Test Accounts
+## Test Accounts (Email / Password)
   ### Admin Account
   - admin@mail.com / admin@123
 
