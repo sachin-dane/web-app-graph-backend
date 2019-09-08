@@ -26,6 +26,11 @@ To get the Backend running locally:
 - You can acces frontend application on 'http://0.0.0.0:8080/' or 'http://localhost:8080/'
 
 
+## Cron / Scheduler
+
+- To run cron job you need to open new terminal and run `npm run start-cron`. It will start and run on every hour and add data objects.
+- Run this command from root directory.
+
 ## Test Accounts (Email / Password)
   ### Admin Account
   - admin@mail.com / admin@123
