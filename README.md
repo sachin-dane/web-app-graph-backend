@@ -20,7 +20,7 @@ To get the Backend running locally:
 - `npm start` to start the local server
 - Once you start nodejs server, then you need to add API end point in front end i.e. web-app-graph-frontend/.env fle
   ![alt text](https://github.com/sachin-dane/web-app-graph-backend/blob/master/screenshot/env_variable.png)
-- You API can access API on 'http://0.0.0.0:3001/' or 'http://localhost:3001/' 
+- You can access API on 'http://0.0.0.0:3001/' or 'http://localhost:3001/' 
 - If you want to check API is running or not, go to browser and hit this url 'http://localhost:3001/ping' it will show the API is running or not it's response is '{ "status": "OK", "status_code": 200 }' 
 - Also I have added postman collection of rest API's
 - You can acces frontend application on 'http://0.0.0.0:8080/' or 'http://localhost:8080/'
