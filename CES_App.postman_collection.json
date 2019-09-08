@@ -1,0 +1,402 @@
+{
+	"info": {
+		"_postman_id": "7ac3317d-27b5-4fd2-8188-daa52521ffb9",
+		"name": "CES_App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"firstname\": \"Anand3\",\n        \"lastname\": \"sonune\",\n        \"email\": \"ajay@mail.com\",\n        \"phone_no\": \"789451230\",\n        \"address\": \"pune\",\n        \"company_name\": \"tcs\",\n        \"city\": \"pune\",\n        \"state\": \"maharashtra\",\n        \"zip_code\": \"411058\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/users/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/users/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User ",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/users/17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add User Post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"firstname\": \"Apurva\",\n        \"lastname\": \"kirti\",\n        \"email\": \"newuser1@mail.com\",\n        \"password\": \"apurva123\",\n        \"phone_no\": \"789451230\",\n        \"address\": \"pune\",\n        \"company_name\": \"tcs\",\n        \"city\": \"pune\",\n        \"state\": \"maharashtra\",\n        \"zip_code\": \"411058\",\n        \"status\":0,\n        \"user_role\":1\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activate user",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 10,\n\t\"status\":1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"sachin@mail.com\",\n\t\"password\":\"pdassword\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get uses respective sites",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/sites/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"sites",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Site",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/sites/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"sites",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check User exist",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"sachsdfain123@mail.com\",\n\t\"phone_No\": \"1234567890\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/users/check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Password update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"sachsdfain@mail.com\",\n\t\"password\":\"cGFzc3dvcmQxMjM=\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/users/password/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"password",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Assign User to site",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"site_id\": 7,\n\t\"user_id\": 2,\n\t\"site_type\": 3\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/sites/assign/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"sites",
+						"assign",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Site",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"site_name\": \"Laptop Industry3\",\n\"site_type\": 2,\n\"obj1Lifetime\": 32620,\n\"obj1Instantaneous\":32 ,\n\"obj2Lifetime\": 45213,\n\"obj2Instantaneous\": 52,\n\"obj3Lifetime\": 21452,\n\"obj3Instantaneous\": 12\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/sites/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"sites",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
